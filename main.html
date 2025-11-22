@@ -569,12 +569,20 @@
         }
 
         .timeline-photo {
-            width: 300px;
+            width: 500px;
             height: 300px;
             border-radius: 15px;
             object-fit: cover;
             border: 5px solid #ffd6e0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .timeline-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
         }
 
         .timeline-date {
@@ -706,6 +714,67 @@
             transform: translateY(-2px);
         }
 
+        /* HTHT (Heart-To-Heart) styles */
+        .hth-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: center;
+        }
+
+
+        .hth-stack {
+            width: 100%;
+            max-width: 720px;
+            perspective: 1000px;
+            position: relative;
+            height: 260px;
+            margin: 0 auto;
+        }
+
+        .hth-card {
+            width: 400px;
+            max-width: 100%;
+            height: 220px;
+            background: linear-gradient(180deg, #ffffff 0%, #fffaf8 100%);
+            border-radius: 8px;
+            padding: 18px 22px;
+            box-shadow: 0 8px 22px rgba(20,20,20,0.08);
+            border: 1px solid rgba(90,74,66,0.06);
+            transform-origin: center;
+            transition: transform 260ms ease, opacity 260ms ease, top 260ms ease, left 260ms ease, box-shadow 180ms ease;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .hth-card:hover {
+            transform: translateX(-50%) translateY(-4px);
+            box-shadow: 0 14px 34px rgba(20,20,20,0.12);
+        }
+
+        .hth-card.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-30px) scale(0.985); }
+
+        .hth-card h3 { color: #8b6f6f; margin-bottom: 8px; }
+
+        .hth-card p { color: #6a5a5a; font-size: 1.05em; line-height: 1.6; }
+
+        .hth-controls { display:flex; gap:10px; justify-content:center; margin-top:12px; }
+
+        .reflection-list { max-width:720px; margin:0 auto; padding: 10px 16px; }
+
+        .reflection-list h4 { color: #8b6f6f; margin-bottom:8px; }
+
+        .reflection-list ul { list-style: none; padding-left: 0; }
+
+        .reflection-list li { background: #fff; padding: 12px 14px; margin:6px 0; border-radius:8px; box-shadow: 0 6px 14px rgba(0,0,0,0.06); color: #5a4a42; }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -803,8 +872,9 @@
             <button onclick="navigateTo('home')" id="nav-home">Home</button>
             <button onclick="navigateTo('timeline')" id="nav-timeline">Our Memories</button>
             <button onclick="navigateTo('game')" id="nav-game">Memory Game</button>
-            <button onclick="navigateTo('quiz')" id="nav-quiz">Love Quiz</button>
-            <button onclick="navigateTo('letter')" id="nav-letter">Love Letter</button>
+            <button onclick="navigateTo('quiz')" id="nav-quiz">Pop Quiz</button>
+            <button onclick="navigateTo('letter')" id="nav-letter">Letter</button>
+            <button onclick="navigateTo('htht')" id="nav-htht">HTHT</button>
         </div>
 
         <!-- HOME PAGE -->
@@ -820,7 +890,7 @@
                             <div class="menu-card" onclick="navigateTo('timeline')">
                                 <div class="icon">📸</div>
                                 <h3>Our Memories</h3>
-                                <p>A journey through our year together</p>
+                                <p>Journey through our year together!!</p>
                             </div>
                             
                             <div class="menu-card" onclick="navigateTo('game')">
@@ -831,13 +901,19 @@
                             
                             <div class="menu-card" onclick="navigateTo('quiz')">
                                 <div class="icon">❓</div>
-                                <h3>Love Quiz</h3>
+                                <h3>Pop Quiz</h3>
                                 <p>How well do you know us?</p>
                             </div>
-                            
+
+                            <div class="menu-card" onclick="navigateTo('htht')">
+                                <div class="icon">🗣️</div>
+                                <h3>HTHT</h3>
+                                <p>Sharing & reflection questions for the year</p>
+                            </div>
+
                             <div class="menu-card" onclick="navigateTo('letter')">
                                 <div class="icon">💌</div>
-                                <h3>Love Letter</h3>
+                                <h3>Letter</h3>
                                 <p>A special message for you</p>
                             </div>
                         </div>
@@ -856,10 +932,10 @@
                     <div class="timeline">
                         <div class="timeline-item" style="animation-delay: 0.1s;">
                             <div class="timeline-content">
-                                <div class="timeline-date">January 2024</div>
-                                <div class="timeline-description">Add your memory description here!</div>
+                                <div class="timeline-date">Our first trip together!!</div>
+                                <div class="timeline-description">While our trip to China was nothing exciting (quite boring actually...) it made me realized that anywhere we go is enjoyable because I have you with me. Thank you for being always by my side bbg!!</div>
                             </div>
-                            <div class="timeline-photo placeholder-img">Your Photo Here</div>
+                            <div class="timeline-photo placeholder-img"><img src="/photos/Dec_2024.jpg"></div>
                         </div>
 
                         <div class="timeline-item" style="animation-delay: 0.2s;">
@@ -961,6 +1037,19 @@
                     <h2>How Well Do You Know Us? 💕</h2>
                     <div class="cat-decoration">😻🎯😺</div>
                     <div id="quizContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HTHT PAGE -->
+        <div id="htht" class="page">
+            <div class="container">
+                <div class="section">
+                    <h2>HTHT — Heart To Heart</h2>
+                    <div class="cat-decoration">🗣️💞📝</div>
+                    <div class="hth-container">
+                        <!-- stack and reflections will be rendered by JS -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -1113,6 +1202,8 @@
                 initGame();
             } else if (pageId === 'quiz') {
                 loadQuiz();
+            } else if (pageId === 'htht') {
+                initHtht();
             }
             
             window.scrollTo(0, 0);
@@ -1290,6 +1381,88 @@
                 currentQuestion++;
                 showQuestion();
             }, 1500);
+        }
+
+        // HTHT (Heart-To-Heart) — conversation cards + reflection
+        const hthtPrompts = [
+            { title: 'Favorite Moment', text: 'Share your single favorite memory from this year and why it mattered.' },
+            { title: 'Gratitude', text: 'Name three small things I did this year that made you feel loved.' },
+            { title: 'Growth', text: 'What is one way you feel we grew together this year?' },
+            { title: 'Playful Question', text: 'If our relationship were a movie, what would the title be?' },
+            { title: 'Future Hope', text: 'One place or experience you want us to do next year?' }
+        ];
+
+        let hthtIndex = 0;
+
+        function initHtht() {
+            hthtIndex = 0;
+            renderHtht();
+            showHthtCard(0);
+        }
+
+        function renderHtht() {
+            const container = document.querySelector('#htht .hth-container');
+            if (!container) return;
+            container.innerHTML = '';
+            const stack = document.createElement('div');
+            stack.className = 'hth-stack';
+
+            hthtPrompts.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'hth-card';
+
+                // small offset for stacking; higher index appears beneath
+                const offset = i * 8; // px
+                card.style.top = offset + 'px';
+                card.style.zIndex = (100 - i).toString();
+                card.style.left = '50%';
+                card.style.transform = 'translateX(-50%)';
+
+                const h = document.createElement('h3');
+                h.textContent = `${i + 1}. ${p.title}`;
+                const pEl = document.createElement('p');
+                pEl.textContent = p.text;
+
+                card.appendChild(h);
+                card.appendChild(pEl);
+
+                // clicking advances to next card
+                card.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showHthtCard(i + 1);
+                });
+
+                stack.appendChild(card);
+            });
+
+            container.appendChild(stack);
+        }
+
+        function showHthtCard(idx) {
+            const stack = document.querySelectorAll('#htht .hth-stack .hth-card');
+            if (!stack || stack.length === 0) return;
+
+            // clamp
+            if (idx < 0) idx = 0;
+            if (idx > stack.length) idx = stack.length;
+
+            hthtIndex = idx;
+
+            stack.forEach((card, i) => {
+                if (i < idx) {
+                    // move past cards slightly up and faded
+                    card.classList.add('hidden');
+                    card.style.transform = 'translateX(-50%) translateY(-30px) scale(0.98)';
+                    card.style.opacity = '0';
+                } else {
+                    // visible stack starting from current index
+                    const offset = i * 8;
+                    card.classList.remove('hidden');
+                    card.style.top = offset + 'px';
+                    card.style.transform = 'translateX(-50%)';
+                    card.style.opacity = '1';
+                }
+            });
         }
     </script>
 </body>
