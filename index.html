@@ -714,6 +714,187 @@
             transform: translateY(-2px);
         }
 
+        /* Game Show Styles */
+        .game-show-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            margin-top: 20px;
+            width: 100%;
+            gap: 25px;
+        }
+
+        .prize-ladder {
+            display: none;
+        }
+
+        .prize-level {
+            display: none;
+        }
+
+        .prize-level.current {
+            display: none;
+        }
+
+        .prize-level.passed {
+            display: none;
+        }
+
+        .game-show-main {
+            flex: 1;
+            /* widened for a more spacious quiz area */
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            padding: 36px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .question-level {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #8b6f6f;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 600px;
+            background: linear-gradient(180deg, #f0f0f0 0%, #d0d0d0 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15), inset 0 1px 3px rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column-reverse;
+            flex-shrink: 0;
+            border: 2px solid #999;
+            position: relative;
+            padding: 4px;
+            gap: 2px;
+            /* increase separation from the quiz box */
+            margin-right: 30px;
+        }
+
+        .progress-level {
+            flex: 1;
+            background: linear-gradient(180deg, #e8e8e8 0%, #c0c0c0 100%);
+            border: 1px solid #999;
+            border-radius: 3px;
+            transition: all 300ms ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .progress-level::after {
+            content: attr(data-iq);
+            font-size: 1.1em;
+            color: #555;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+        }
+
+        .progress-level.active {
+            background: linear-gradient(180deg, #ff6b9d 0%, #ffa0c0 100%);
+            border-color: #ff3366;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 0 8px rgba(255,107,157,0.6);
+        }
+
+        .progress-level.active::after {
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            font-weight: 900;
+        }
+
+        .progress-level.passed {
+            background: linear-gradient(180deg, #b8e6b8 0%, #90d890 100%);
+            border-color: #7aa87a;
+        }
+
+        .progress-level.passed::after {
+            color: #2a5a2a;
+            font-weight: 700;
+        }
+
+        .progress-fill {
+            display: none;
+        }
+
+        /* Power card styles */
+        .power-cards {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin: 12px 0 8px 0;
+        }
+
+        .power-card {
+            background: linear-gradient(135deg,#fff 0%, #f6f6f6 100%);
+            border: 2px solid rgba(90,74,66,0.06);
+            padding: 14px 20px;
+            min-width: 110px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.05em;
+            color: #5a4a42;
+            transition: transform 160ms ease, opacity 160ms ease;
+            user-select: none;
+        }
+
+        .power-card:hover { transform: translateY(-4px) scale(1.02); }
+        .power-card.used { opacity: 0.45; pointer-events: none; transform: none; }
+
+        .quiz-option.disabled { opacity: 0.45; pointer-events: none; }
+
+        .iq-display {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #8b6f6f;
+            margin: 15px 0;
+            padding: 8px;
+        }
+
+        .iq-display .iq-value {
+            font-size: 2em;
+            color: #ff6b9d;
+            font-weight: 900;
+        }
+
+        .game-over-screen {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #ffd6e0 0%, #c4d7ed 100%);
+            border-radius: 12px;
+            display: none;
+        }
+
+        .game-over-screen.show {
+            display: block;
+            animation: popIn 0.6s ease-out;
+        }
+
+        .game-over-screen h3 {
+            font-size: 2em;
+            margin-bottom: 12px;
+            color: #8b6f6f;
+        }
+
+        .game-over-screen p {
+            font-size: 1.4em;
+            margin: 8px 0;
+            color: #5a4a42;
+        }
+
         /* HTHT (Heart-To-Heart) styles */
         .hth-container {
             display: flex;
@@ -871,8 +1052,7 @@
         <div class="nav">
             <button onclick="navigateTo('home')" id="nav-home">Home</button>
             <button onclick="navigateTo('timeline')" id="nav-timeline">Our Memories</button>
-            <button onclick="navigateTo('game')" id="nav-game">Memory Game</button>
-            <button onclick="navigateTo('quiz')" id="nav-quiz">Pop Quiz</button>
+            <button onclick="navigateTo('quiz')" id="nav-quiz">Game Show</button>
             <button onclick="navigateTo('letter')" id="nav-letter">Letter</button>
             <button onclick="navigateTo('htht')" id="nav-htht">HTHT</button>
         </div>
@@ -893,11 +1073,7 @@
                                 <p>Journey through our year together!!</p>
                             </div>
                             
-                            <div class="menu-card" onclick="navigateTo('game')">
-                                <div class="icon">🎮</div>
-                                <h3>Memory Game</h3>
-                                <p>Match the pairs!</p>
-                            </div>
+                            <!-- Memory Game removed -->
                             
                             <div class="menu-card" onclick="navigateTo('quiz')">
                                 <div class="icon">❓</div>
@@ -1042,28 +1218,12 @@
             </div>
         </div>
 
-        <!-- MEMORY GAME PAGE -->
-        <div id="game" class="page">
-            <div class="container">
-                <div class="section">
-                    <h2>Memory Match Game 🐱</h2>
-                    <div class="cat-decoration">😺💕😸</div>
-                    <p style="text-align: center; margin: 20px 0;">Match the pairs of our special moments!</p>
-                    <div class="score">Moves: <span id="moves">0</span> | Matches: <span id="matches">0/8</span></div>
-                    <div class="memory-game" id="gameBoard"></div>
-                    <div style="text-align: center;">
-                        <button class="btn" onclick="resetGame()">Reset Game</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- QUIZ PAGE -->
         <div id="quiz" class="page">
             <div class="container">
                 <div class="section">
-                    <h2>How Well Do You Know Us? 💕</h2>
-                    <div class="cat-decoration">😻🎯😺</div>
+                    <h2>Are you a smartie pants? 🧠</h2>
                     <div id="quizContent"></div>
                 </div>
             </div>
@@ -1226,9 +1386,7 @@
             });
             document.getElementById('nav-' + pageId).classList.add('active');
             
-            if (pageId === 'game') {
-                initGame();
-            } else if (pageId === 'quiz') {
+            if (pageId === 'quiz') {
                 loadQuiz();
             } else if (pageId === 'htht') {
                 initHtht();
@@ -1237,146 +1395,116 @@
             window.scrollTo(0, 0);
         }
 
-        // Memory Game
-        const emojis = ['💕', '😻', '🐱', '💝', '😺', '🎁', '💖', '🌟'];
-        let cards = [...emojis, ...emojis];
-        let flippedCards = [];
-        let matchedPairs = 0;
-        let moves = 0;
+        
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
+        // Game Show - "Who Wants to Be Our Love Millionaire"
+        const prizes = [
+            '💕', '💖', '💝', '💗', '💓', '💞', '💘', '✨', '🌟', '🎁', '🎉', '🎊', '🐱', '😻', '🎯'
+        ];
 
-        function initGame() {
-            const gameBoard = document.getElementById('gameBoard');
-            gameBoard.innerHTML = '';
-            cards = shuffleArray([...emojis, ...emojis]);
-            matchedPairs = 0;
-            moves = 0;
-            flippedCards = [];
-            document.getElementById('moves').textContent = '0';
-            document.getElementById('matches').textContent = '0/8';
+        const iqLadder = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 250000, 500000, 750000, 1000000];
 
-            cards.forEach((emoji, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.emoji = emoji;
-                card.dataset.index = index;
-                card.textContent = '?';
-                card.onclick = () => flipCard(card);
-                gameBoard.appendChild(card);
-            });
-        }
-
-        function flipCard(card) {
-            if (flippedCards.length === 2 || card.classList.contains('flipped') || card.classList.contains('matched')) {
-                return;
-            }
-
-            card.classList.add('flipped');
-            card.textContent = card.dataset.emoji;
-            flippedCards.push(card);
-
-            if (flippedCards.length === 2) {
-                moves++;
-                document.getElementById('moves').textContent = moves;
-                checkMatch();
-            }
-        }
-
-        function checkMatch() {
-            const [card1, card2] = flippedCards;
-            
-            if (card1.dataset.emoji === card2.dataset.emoji) {
-                card1.classList.add('matched');
-                card2.classList.add('matched');
-                matchedPairs++;
-                document.getElementById('matches').textContent = `${matchedPairs}/8`;
-                flippedCards = [];
-                
-                if (matchedPairs === 8) {
-                    setTimeout(() => alert(`Congratulations! You won in ${moves} moves! 🎉`), 300);
-                }
-            } else {
-                setTimeout(() => {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                    card1.textContent = '?';
-                    card2.textContent = '?';
-                    flippedCards = [];
-                }, 1000);
-            }
-        }
-
-        function resetGame() {
-            initGame();
-        }
-
-        // Quiz
         const quizQuestions = [
-            {
-                question: "Where did we go on our first date?",
-                options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"],
-                correct: 0
-            },
-            {
-                question: "What's my favorite thing about you?",
-                options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"],
-                correct: 0
-            },
-            {
-                question: "What was our most memorable moment this year?",
-                options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"],
-                correct: 0
-            },
-            {
-                question: "What's our favorite activity to do together?",
-                options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"],
-                correct: 0
-            },
-            {
-                question: "What's our special song?",
-                options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"],
-                correct: 0
-            }
+            { question: "Where did we go on our first date?", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "What's my favorite thing about you?", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "What was our most memorable moment this year?", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "What's our favorite activity to do together?", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "What's our special song?", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 6 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 7 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 8 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 9 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 10 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 11 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 12 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 13 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 14 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
+            { question: "Question 15 - Add your question here (FINAL!)", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 }
         ];
 
         let currentQuestion = 0;
-        let score = 0;
+        // Track whether each power card has been used
+        const powerUsed = {
+            fifty: false,
+            hint: false,
+            skip: false
+        };
+
 
         function loadQuiz() {
             const quizContent = document.getElementById('quizContent');
-            quizContent.innerHTML = '';
+            quizContent.innerHTML = `
+                <div class="game-show-container">
+                    <div class="progress-bar" id="progressBar">
+                        ${[...Array(15)].map((_, i) => `<div class="progress-level" id="level-${i}" data-iq="${iqLadder[i].toLocaleString()}"></div>`).join('')}
+                    </div>
+                    <div class="prize-ladder" id="prizeLadder"></div>
+                    <div class="game-show-main">
+                        <div class="question-level" id="levelDisplay">Question 1 of 15</div>
+                        <div class="iq-display">IQ: <span class="iq-value" id="iqValue">1</span></div>
+                        <div class="power-cards">
+                            <div class="power-card" id="power-fifty" onclick="usePower('fifty')">50/50</div>
+                            <div class="power-card" id="power-hint" onclick="usePower('hint')">Hint</div>
+                            <div class="power-card" id="power-skip" onclick="usePower('skip')">Skip</div>
+                        </div>
+                        <div id="questionContainer"></div>
+                        <div class="game-over-screen" id="gameOverScreen"></div>
+                    </div>
+                </div>
+            `;
             currentQuestion = 0;
-            score = 0;
+            renderPrizeLadder();
             showQuestion();
         }
 
-        function showQuestion() {
-            const quizContent = document.getElementById('quizContent');
+        function renderPrizeLadder() {
+            const ladder = document.getElementById('prizeLadder');
+            ladder.innerHTML = '';
+            prizes.forEach((prize, i) => {
+                const level = document.createElement('div');
+                level.className = 'prize-level';
+                level.textContent = `Q${i + 1}: ${prize}`;
+                if (i === currentQuestion) level.classList.add('current');
+                if (i < currentQuestion) level.classList.add('passed');
+                ladder.appendChild(level);
+            });
+        }
+
+        function updateProgressBar() {
+            // Update level indicators
+            for (let i = 0; i < 15; i++) {
+                const level = document.getElementById(`level-${i}`);
+                if (level) {
+                    level.classList.remove('active', 'passed');
+                    if (i < currentQuestion) {
+                        level.classList.add('passed');
+                    } else if (i === currentQuestion) {
+                        level.classList.add('active');
+                    }
+                }
+            }
             
+            document.getElementById('levelDisplay').textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            
+            // Update IQ display
+            const currentIQ = iqLadder[currentQuestion] || 1000000;
+            document.getElementById('iqValue').textContent = currentIQ.toLocaleString();
+        }
+
+        function showQuestion() {
+            updateProgressBar();
+            renderPrizeLadder();
+
             if (currentQuestion >= quizQuestions.length) {
-                quizContent.innerHTML = `
-                    <div style="text-align: center; padding: 40px;">
-                        <h3 style="font-size: 2em; margin-bottom: 20px;">Quiz Complete! 🎉</h3>
-                        <p style="font-size: 1.5em;">You got ${score} out of ${quizQuestions.length} correct!</p>
-                        <div class="cat-decoration">😻💕😺</div>
-                        <button class="btn" onclick="loadQuiz()">Try Again</button>
-                    </div>
-                `;
+                showGameOver();
                 return;
             }
 
             const q = quizQuestions[currentQuestion];
-            quizContent.innerHTML = `
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = `
                 <div class="quiz-question">
-                    <h3 style="margin-bottom: 20px;">Question ${currentQuestion + 1} of ${quizQuestions.length}</h3>
-                    <p style="font-size: 1.3em; margin-bottom: 20px;">${q.question}</p>
+                    <h3 style="margin-bottom: 20px; font-size: 1.3em;">${q.question}</h3>
                     <div class="quiz-options">
                         ${q.options.map((option, index) => `
                             <div class="quiz-option" onclick="selectAnswer(${index})">
@@ -1402,13 +1530,94 @@
             });
 
             if (selected === q.correct) {
-                score++;
+                setTimeout(() => {
+                    currentQuestion++;
+                    showQuestion();
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    showGameOver(false);
+                }, 1000);
             }
+        }
 
-            setTimeout(() => {
+        // Power card handler
+        function usePower(type) {
+            if (powerUsed[type]) return;
+            const q = quizQuestions[currentQuestion];
+            const container = document.getElementById('questionContainer');
+            const options = container.querySelectorAll('.quiz-option');
+            if (!options || options.length === 0) return;
+
+            if (type === 'fifty') {
+                // eliminate two wrong options
+                const wrong = [];
+                options.forEach((opt, idx) => { if (idx !== q.correct) wrong.push(idx); });
+                // randomly keep only two wrong -> remove extras until only 2 remain
+                while (wrong.length > 2) {
+                    const r = Math.floor(Math.random() * wrong.length);
+                    wrong.splice(r, 1);
+                }
+                wrong.forEach(i => {
+                    const opt = options[i];
+                    opt.classList.add('disabled');
+                });
+            } else if (type === 'hint') {
+                // show first-letter hint under question
+                const hintEl = container.querySelector('.hint-text') || (() => {
+                    const el = document.createElement('div');
+                    el.className = 'hint-text';
+                    el.style.marginTop = '12px';
+                    el.style.fontStyle = 'italic';
+                    el.style.color = '#8b6f6f';
+                    container.appendChild(el);
+                    return el;
+                })();
+                const correctOpt = q.options[q.correct] || '';
+                hintEl.textContent = `20 sec to search your phone!!`;
+            } else if (type === 'skip') {
+                // skip to next question
                 currentQuestion++;
                 showQuestion();
-            }, 1500);
+            }
+
+            // For fifty/hint make them single-use; allow skip to be used multiple times
+            if (type === 'fifty' || type === 'hint') {
+                powerUsed[type] = true;
+                const btn = document.getElementById(`power-${type}`);
+                if (btn) btn.classList.add('used');
+            } else if (type === 'skip') {
+                // briefly animate the skip button to show it worked
+                const btn = document.getElementById('power-skip');
+                if (btn) {
+                    btn.classList.add('used');
+                    setTimeout(() => btn.classList.remove('used'), 300);
+                }
+            }
+        }
+
+        function showGameOver(won = true) {
+            const gameOverScreen = document.getElementById('gameOverScreen');
+            gameOverScreen.classList.add('show');
+            
+            if (won) {
+                gameOverScreen.innerHTML = `
+                    <h3>🎉 Congratulations! 🎉</h3>
+                    <p>You answered all 15 questions correctly!</p>
+                    <p style="font-size: 1.8em; margin-top: 16px;">Final IQ: <span style="color: #ff6b9d; font-weight: 900;">1,000,000</span></p>
+                    <p style="font-size: 1.4em;">You're a Love Millionaire! 💕✨</p>
+                    <button class="btn" style="margin-top: 20px;" onclick="loadQuiz()">Play Again</button>
+                `;
+            } else {
+                const finalIQ = iqLadder[currentQuestion - 1] || 1;
+                gameOverScreen.innerHTML = `
+                    <h3>Game Over 💔</h3>
+                    <p>You made it to Question ${currentQuestion + 1} of 15</p>
+                    <p style="font-size: 1.6em; margin-top: 12px;">Final IQ: <span style="color: #ff6b9d; font-weight: 900;">${finalIQ.toLocaleString()}</span></p>
+                    <p>Better luck next time! 🐱</p>
+                    <button class="btn" style="margin-top: 20px;" onclick="loadQuiz()">Try Again</button>
+                `;
+            }
         }
 
         // HTHT (Heart-To-Heart) — conversation cards + reflection
