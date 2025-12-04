@@ -1231,7 +1231,7 @@
         <div id="htht" class="page">
             <div class="container">
                 <div class="section">
-                    <h2>HTHT — Heart To Heart</h2>
+                    <h2>Reflection & Sharing Question</h2>
                     <div class="cat-decoration">🗣️💞📝</div>
                     <div class="hth-container">
                         <!-- stack and reflections will be rendered by JS -->
@@ -1402,7 +1402,7 @@
             '💕', '💖', '💝', '💗', '💓', '💞', '💘', '✨', '🌟', '🎁', '🎉', '🎊', '🐱', '😻', '🎯'
         ];
 
-        const iqLadder = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 250000, 500000, 750000, 1000000];
+        const iqLadder = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 250000, 500000];
 
         const quizQuestions = [
             { question: "Where did Zac first get a crush on Weis?", options: ["When Zac & Weis were writing camp opening video scripts together in the conference room", "During camp photo shoot", "Camp comm meeting at Ashlee’s house", "When Zac & Weis cried together during camp"], correct: 2 },
@@ -1416,10 +1416,8 @@
             { question: "What is our very first concert together?", options: ["Daniel Ceaser", "1975", "The Coldplay", "Taylor Swift"], correct: 0 },
             { question: "How many times have we gone to gardens by the bay together?", options: ["3", "4", "5", "6"], correct: 1 },
             { question: "How many days into our relationship, did Zac say “I love you”?", options: ["1 day (6 Dec)", "2 day (7 Dec)", "3 day (8 Dec)", "4 day, 9 Dec"], correct: 0 },
-            { question: "Question 12 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
-            { question: "Question 13 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
-            { question: "Question 14 - Add your question here", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 },
-            { question: "Question 15 - Add your question here (FINAL!)", options: ["[Option 1]", "[Option 2]", "[Option 3]", "[Option 4]"], correct: 0 }
+            { question: "What is the circumference of Zac's butt?", options: ["76cm", "83cm", "94cm", "102"], correct: 2 },
+            { question: "FINAL Question, who is the bigger SIMP", options: ["Weis", "Zac"], correct: 0 }
         ];
 
         let currentQuestion = 0;
@@ -1436,7 +1434,7 @@
             quizContent.innerHTML = `
                 <div class="game-show-container">
                     <div class="progress-bar" id="progressBar">
-                        ${[...Array(15)].map((_, i) => `<div class="progress-level" id="level-${i}" data-iq="${iqLadder[i].toLocaleString()}"></div>`).join('')}
+                        ${[...Array(13)].map((_, i) => `<div class="progress-level" id="level-${i}" data-iq="${iqLadder[i].toLocaleString()}"></div>`).join('')}
                     </div>
                     <div class="prize-ladder" id="prizeLadder"></div>
                     <div class="game-show-main">
@@ -1472,7 +1470,7 @@
 
         function updateProgressBar() {
             // Update level indicators
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 13; i++) {
                 const level = document.getElementById(`level-${i}`);
                 if (level) {
                     level.classList.remove('active', 'passed');
@@ -1484,7 +1482,7 @@
                 }
             }
             
-            document.getElementById('levelDisplay').textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            document.getElementById('levelDisplay').textContent = `Question ${currentQuestion + 1} of 13`;
             
             // Update IQ display
             const currentIQ = iqLadder[currentQuestion] || 1000000;
@@ -1603,9 +1601,8 @@
             if (won) {
                 gameOverScreen.innerHTML = `
                     <h3>🎉 Congratulations! 🎉</h3>
-                    <p>You answered all 15 questions correctly!</p>
                     <p style="font-size: 1.8em; margin-top: 16px;">Final IQ: <span style="color: #ff6b9d; font-weight: 900;">1,000,000</span></p>
-                    <p style="font-size: 1.4em;">You're a Love Millionaire! 💕✨</p>
+                    <p style="font-size: 1.4em;">You are a smarty pants with a BIG BUTT! 💕✨</p>
                     <button class="btn" style="margin-top: 20px;" onclick="loadQuiz()">Play Again</button>
                 `;
             } else {
@@ -1622,11 +1619,12 @@
 
         // HTHT (Heart-To-Heart) — conversation cards + reflection
         const hthtPrompts = [
-            { title: 'Favorite Moment', text: 'Share your single favorite memory from this year and why it mattered.' },
-            { title: 'Gratitude', text: 'Name three small things I did this year that made you feel loved.' },
-            { title: 'Growth', text: 'What is one way you feel we grew together this year?' },
-            { title: 'Playful Question', text: 'If our relationship were a movie, what would the title be?' },
-            { title: 'Future Hope', text: 'One place or experience you want us to do next year?' }
+            { title: 'Favorite Moment', text: 'Share your single favorite memory of us from this year and why it mattered!' },
+            { title: 'Gratitude', text: 'What are the things I did this year that made you feel appreciated and loved?' },
+            { title: 'Challenges', text: 'What is the hardest thing we have gone through together in our relationship this year?' },
+            { title: 'Growth', text: 'What is one way you feel we grew together this year as a couple?' },
+            { title: 'Discoveries', text: 'What is something new we have learnt about each other?' },
+            { title: 'Future', text: 'What significant goal do you think we should aim for together as a couple next year?' }
         ];
 
         let hthtIndex = 0;
